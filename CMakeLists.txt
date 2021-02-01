@@ -50,7 +50,7 @@ configure_package_config_file(
 
 install(TARGETS wise_enum
         EXPORT "${targets_export_name}"
-        INCLUDES DESTINATION "${include_install_dir}"
+        INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
         ARCHIVE DESTINATION "${lib_install_dir}")
 
 install(FILES ${interface_hdrs} DESTINATION "${include_install_dir}")
@@ -80,10 +80,10 @@ install(
 add_library(WiseEnum::wise_enum ALIAS wise_enum)
 
 if(BUILD_EXAMPLES)
-    add_executable(example11 example11.x.cpp)
+    add_executable(example11 examples/example11.x.cpp)
     set_property(TARGET example11 PROPERTY CXX_STANDARD 11)
     target_link_libraries(example11 PRIVATE WiseEnum::wise_enum)
 
-    add_executable(example example.x.cpp)
+    add_executable(example examples/example.x.cpp)
     target_link_libraries(example PRIVATE WiseEnum::wise_enum)
 endif()
